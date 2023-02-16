@@ -1,3 +1,4 @@
-<?php include('/pages/header.php'); ?>
-<?php include('/pages/footer.php'); ?>
+<?php
 
+include('./functions.php');
+include('./pages/frontpage.php');
