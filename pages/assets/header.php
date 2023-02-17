@@ -11,5 +11,27 @@
 </head>
 <body>
 <header>
-    <img class="logo" id="bkbdemy-header-logo" src="<?php echo getRootDir(); ?>/assets/images/Logo/logo.svg">
+    <a href="<?php echo get_home_url(); ?>">
+        <img src="<?php echo get_template_uri(); ?>/assets/images/logo/logo.svg">
+    </a>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="<?php echo get_home_url(); ?>/anmeldung">
+                    Anmelden
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo get_home_url(); ?>/anmeldung">
+                    Registrieren
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo get_home_url(); ?>/videos">
+                    Videos
+                </a>
+            </li>
+        </ul>
+    </nav>
 </header>

@@ -1,5 +1,5 @@
 <?php get_header(); ?>
 
-Anmelden
+    Registrieren
 
 <?php get_footer(); ?>

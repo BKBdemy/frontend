@@ -1,5 +1,5 @@
 <?php get_header(); ?>
 
-Startseite
+Das tut mir leid.
 
 <?php get_footer(); ?>
