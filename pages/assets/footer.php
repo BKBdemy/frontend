@@ -1,5 +1,7 @@
 <footer>
-<p>Footer</p>
+    <div class="wrapper">
+        <p>Footer</p>
+    </div>
 </footer>
 
 </body>

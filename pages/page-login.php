@@ -1,5 +1,9 @@
 <?php get_header(); ?>
 
-Anmelden
+<main>
+    <div class="wrapper">
+        <p>Anmeldeformular</p>
+    </div>
+</main>
 
 <?php get_footer(); ?>

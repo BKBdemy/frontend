@@ -28,8 +28,7 @@ class Route
     public static function run($basepath = '/')
     {
 
-// Parse current url
-        $parsed_url = parse_url($_SERVER['REQUEST_URI']);//Parse Uri
+        $parsed_url = parse_url($_SERVER['REQUEST_URI']);
 
         if (isset($parsed_url['path'])) {
             $path = $parsed_url['path'];
