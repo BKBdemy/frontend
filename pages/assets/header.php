@@ -15,18 +15,17 @@
         <nav>
             <a class="nav-item home-logo" href="<?php echo get_home_url(); ?>">
                 <img src="<?php echo get_template_uri(); ?>/assets/images/logo/logo.svg">
-                <p>BKBDEMY</p>
             </a>
 
             <div class="nav-bar">
                 <ul>
                     <li>
-                        <a href="<?php echo get_home_url(); ?>/anmeldung">
+                        <a class="primary-button" href="<?php echo get_home_url(); ?>/anmeldung">
                             Anmelden
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo get_home_url(); ?>/registrierung">
+                        <a class="secondary-button" href="<?php echo get_home_url(); ?>/registrierung">
                             Registrieren
                         </a>
                     </li>

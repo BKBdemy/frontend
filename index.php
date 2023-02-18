@@ -17,6 +17,14 @@ Route::add('/registrierung', function() {
     include('./pages/page-register.php');
 });
 
+Route::add('/datenschutz', function() {
+    include('./pages/page-datenschutz.php');
+});
+
+Route::add('/impressum', function() {
+    include('./pages/page-impressum.php');
+});
+
 Route::pathNotFound(function($path) {
     include('./pages/404.php');
 });
