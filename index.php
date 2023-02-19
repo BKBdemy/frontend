@@ -1,9 +1,6 @@
 <?php
 
 include('./functions.php');
-include('./inc/classes/route.php');
-
-define('BASEPATH', '/bkbdemyxamp');
 
 Route::add('/',function(){
     include('./pages/frontpage.php');
@@ -29,5 +26,5 @@ Route::pathNotFound(function($path) {
     include('./pages/404.php');
 });
 
-Route::run(BASEPATH);
+Route::run(get_basepath());
 exit;
