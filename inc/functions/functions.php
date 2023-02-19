@@ -11,10 +11,21 @@ function get_footer() {
 
 }
 
-function get_nav_bar() {
+function create_nav_bar($menuPosition, $links) {
 
-    include('./pages/assets/nav-bar.php');
+    ob_start(); ?>
 
+    <ul class="menu-<?php echo $menuPosition ?>">
+        <?php foreach ($links as $link): ?>
+            <li>
+                <a class="<?php echo $link['class']; ?>" href="<?php echo get_home_url() . $link['url']; ?>">
+                    <?php echo $link['linkText']; ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+
+    <?php echo ob_get_clean();
 }
 
 function get_template_uri() {

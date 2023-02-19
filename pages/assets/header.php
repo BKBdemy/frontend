@@ -26,11 +26,31 @@
             </div>
 
             <div class="nav-bar desktop">
-                <?php get_nav_bar(); ?>
+                <?php create_nav_bar('desktop', [
+                        [
+                            'class' => 'primary-button',
+                            'url' => '/anmeldung',
+                            'linkText' => 'Anmelden'
+                        ],
+                        [
+                            'class' => 'secondary-button',
+                            'url' => '/registrierung',
+                            'linkText' => 'Registrieren']
+                    ]); ?>
             </div>
 
             <div class="nav-bar mobile">
-                <?php get_nav_bar(); ?>
+                <?php create_nav_bar('mobile', [
+                    [
+                        'class' => 'primary-button',
+                        'url' => '/anmeldung',
+                        'linkText' => 'Anmelden'
+                    ],
+                    [
+                        'class' => 'secondary-button',
+                        'url' => '/registrierung',
+                        'linkText' => 'Registrieren']
+                ]); ?>
             </div>
         </nav>
     </div>

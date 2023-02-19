@@ -2,7 +2,7 @@
 
 <main>
     <div class="wrapper">
-        <p>Startseite</p>
+        <h1>Startseite</h1>
     </div>
 </main>
 

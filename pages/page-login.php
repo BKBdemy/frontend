@@ -2,7 +2,7 @@
 
 <main>
     <div class="wrapper">
-        <p>Anmeldeformular</p>
+        <h1>Anmeldeformular</h1>
     </div>
 </main>
 

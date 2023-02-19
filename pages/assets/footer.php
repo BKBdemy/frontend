@@ -2,14 +2,19 @@
     <div class="wrapper">
         <div class="footer-bar">
             <p>© <?php echo date('Y'); ?> BKBdemy</p>
-            <ul>
-                <li>
-                    <a href="<?php echo get_home_url(); ?>/datenschutz">Datenschutz</a>
-                </li>
-                <li>
-                    <a href="<?php echo get_home_url(); ?>/impressum">Impressum</a>
-                </li>
-            </ul>
+
+            <?php create_nav_bar('footer', [
+                [
+                    'class' => '',
+                    'url' => '/datenschutz',
+                    'linkText' => 'Datenschutz'
+                ],
+                [
+                    'class' => '',
+                    'url' => '/impressum',
+                    'linkText' => 'Impressum']
+            ]); ?>
+
         </div>
     </div>
 </footer>

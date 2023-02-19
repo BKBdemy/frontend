@@ -2,7 +2,7 @@
 
 <main>
     <div class="wrapper">
-        <p>Registrierungsformular</p>
+        <h1>Registrierungsformular</h1>
     </div>
 </main>
 

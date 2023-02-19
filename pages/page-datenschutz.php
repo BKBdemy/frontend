@@ -2,7 +2,7 @@
 
 <main>
     <div class="wrapper">
-        <p>Datenschutz</p>
+        <h1>Datenschutz</h1>
     </div>
 </main>
 

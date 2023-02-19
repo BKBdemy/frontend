@@ -2,7 +2,7 @@
 
 <main>
     <div class="wrapper">
-        <p>Impressum</p>
+        <h1>Impressum</h1>
     </div>
 </main>
 
