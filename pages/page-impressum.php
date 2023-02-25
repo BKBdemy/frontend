@@ -2,7 +2,7 @@
 
 <main>
     <div class="wrapper">
-        <h1>Impressum</h1>
+        <h1 class="page-headline">Impressum</h1>
     </div>
 </main>
 

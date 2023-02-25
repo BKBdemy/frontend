@@ -22,6 +22,10 @@ Route::add('/impressum', function() {
     include('./pages/page-impressum.php');
 });
 
+Route::add('/kurse/.*$', function() {
+    include('./pages/page-single-course.php');
+});
+
 Route::pathNotFound(function($path) {
     include('./pages/404.php');
 });

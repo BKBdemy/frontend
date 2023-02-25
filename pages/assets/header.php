@@ -12,6 +12,10 @@
 </head>
 <body class="<?php echo get_body_class(); ?>">
 
+<div class="scroll-up">
+    <img src="<?php echo get_template_uri(); ?>/assets/images/icons/scroll-top-arrow.svg">
+</div>
+
 <header>
     <div class="wrapper">
         <nav>

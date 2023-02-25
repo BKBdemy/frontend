@@ -28,6 +28,30 @@ function create_nav_bar($menuPosition, $links) {
     <?php echo ob_get_clean();
 }
 
+function createVideoSlider($class,$courseData) {
+    ob_start(); ?>
+
+    <div class="<?php echo $class; ?>-slider">
+        <?php foreach ($courseData as $course): ?>
+            <div class="single-course">
+                <h3><?php echo $course['description'];?></h3>
+                <p class="course-further-info">
+                    <span class="course-author-name">Tutor: <?php echo $course['author']; ?></span>
+                    <span class="course-duration">Dauer: <?php echo $course['duration']; ?></span>
+                    <span class="course-price">Preis: <?php echo $course['price']; ?></span>
+                </p>
+                <video>
+                    <source src="<?php echo $course['video']; ?>" type="video/mp4">
+                </video>
+                <p class="course-excerpt"><?php echo $course['excerpt'];?></p>
+                <a class="secondary-button" href="<?php echo get_home_url() ?>/kurse/<?php echo $course['name'] ?>">Zum Kurs</a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+    <?php echo ob_get_clean();
+}
+
 function get_template_uri() {
 
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
@@ -37,7 +61,7 @@ function get_template_uri() {
     $template_uri = rtrim($template_uri, '/');
     $template_uri = str_replace('inc/functions', '', $template_uri);
     $template_uri = str_replace($doc_root, '', $template_uri);
-    return 'http://' . $_SERVER['HTTP_HOST'] . $template_uri;
+    return 'https://' . $_SERVER['HTTP_HOST'] . $template_uri;
 
 }
 
