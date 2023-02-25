@@ -1,0 +1,5 @@
+API Dokumentation
+https://bkbdemy.pxroute.net/swagger/index.html
+
+PW
+admin
