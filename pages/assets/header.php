@@ -8,7 +8,7 @@
     <title>BKBdemy</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="<?php echo get_template_uri() ?>/dist/main.min.js"></script>
-    <link rel="stylesheet" href="<?php echo get_template_uri(); ?>/dist/main.min.css">
+    <link rel="stylesheet" href="<?php echo get_template_uri(); ?>dist/main.min.css">
 </head>
 <body class="<?php echo get_body_class(); ?>">
 

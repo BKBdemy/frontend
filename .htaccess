@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{https} on
+RewriteRule ^(.*)$ index.php [L]

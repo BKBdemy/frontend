@@ -61,7 +61,13 @@ function get_template_uri() {
     $template_uri = rtrim($template_uri, '/');
     $template_uri = str_replace('inc/functions', '', $template_uri);
     $template_uri = str_replace($doc_root, '', $template_uri);
-    return 'https://' . $_SERVER['HTTP_HOST'] . $template_uri;
+    $template_uri =  'https://' . $_SERVER['HTTP_HOST'] . $template_uri;
+
+    if (strpos($template_uri, 'https://localhost') !== false || strpos($template_uri, 'https://127.0.0.1') !== false) {
+        $template_uri = str_replace('https://', 'http://', $template_uri);
+    }
+
+    return $template_uri;
 
 }
 

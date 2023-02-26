@@ -106,6 +106,8 @@
             ); */?>
         </div>
     </section>
+
+    <?php echo get_template_uri() ?>
 </main>
 
 <?php get_footer(); ?>
