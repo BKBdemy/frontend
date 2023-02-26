@@ -87,9 +87,11 @@ function initScrollUp() {
 
 async function fetchAPI() {
 
-    const api = 'https://bkbdemy.pxroute.net/';
-
-    fetch(api)
+    fetch('https://bkbdemy.pxroute.net/api/products', {
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error(error));
