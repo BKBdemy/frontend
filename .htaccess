@@ -1,7 +1,17 @@
+# BEGIN bkbdemy
+<IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule \.(css|js|png|gif|jpg|jpeg|woff|ttf|svg|ico|pdf|doc|docx|xls|xlsx|ppt|pptx|zip|rar|mp4|avi|mov|wmv|flv)$ - [L]
+
+# Exclude certain file types from rewrite rules
+RewriteRule \.(css|js|png|gif|jpg|jpeg|woff|ttf|svg|ico|pdf|doc|docx|xls|xlsx|ppt|pptx|zip|rar|mp4|avi|mov|wmv|flv|mp3|wav|ogg|webm|json)$ - [L]
+
+# Redirect HTTP requests to HTTPS
 RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Handle all requests with index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [L]
+</IfModule>
+# END bkbdemy
