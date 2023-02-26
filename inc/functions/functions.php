@@ -53,7 +53,6 @@ function createVideoSlider($class,$courseData) {
 }
 
 function get_template_uri() {
-
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
     $script_dir = __DIR__;
     $template_uri = str_replace($doc_root, '', $script_dir);
@@ -61,28 +60,21 @@ function get_template_uri() {
     $template_uri = rtrim($template_uri, '/');
     $template_uri = str_replace('inc/functions', '', $template_uri);
     $template_uri = str_replace($doc_root, '', $template_uri);
-    $template_uri =  'https://' . $_SERVER['HTTP_HOST'] . $template_uri;
 
-    if (strpos($template_uri, 'https://localhost') !== false || strpos($template_uri, 'https://127.0.0.1') !== false) {
-        $template_uri = str_replace('https://', 'http://', $template_uri);
+    $protocol = 'http://';
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+        $protocol = 'https://';
     }
 
-    return $template_uri;
+    $template_uri = $protocol . $_SERVER['HTTP_HOST'] . $template_uri;
 
+    return $template_uri;
 }
 
 function get_home_url() {
-
-    $doc_root = $_SERVER['DOCUMENT_ROOT'];
-    $script_dir = __DIR__;
-    $template_uri = str_replace($doc_root, '', $script_dir);
-    $template_uri = str_replace('\\', '/', $template_uri);
-    $template_uri = rtrim($template_uri, '/');
-    $template_uri = str_replace('inc/functions', '', $template_uri);
-    $template_uri = str_replace($doc_root, '', $template_uri);
-    $template_uri = rtrim($template_uri, '/');
-    return $template_uri;
-
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https://" : "http://";
+    $domain = $_SERVER['HTTP_HOST'];
+    return $protocol . $domain;
 }
 
 function get_body_class() {

@@ -3,3 +3,11 @@ https://bkbdemy.pxroute.net/swagger/index.html
 
 PW
 admin
+
+
+RewriteEngine on
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ index.php [L]
+
+RewriteCond %{HTTPS} on
+RewriteRule ^(.*)$ index.php [L]

@@ -1,3 +1,7 @@
 RewriteEngine On
-RewriteCond %{https} on
+RewriteRule \.(css|js|png|gif|jpg|jpeg|woff|ttf|svg|ico|pdf|doc|docx|xls|xlsx|ppt|pptx|zip|rar|mp4|avi|mov|wmv|flv)$ - [L]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php [L]

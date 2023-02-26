@@ -107,7 +107,8 @@
         </div>
     </section>
 
-    <?php echo get_template_uri() ?>
+    <?php echo get_home_url(); ?>
+
 </main>
 
 <?php get_footer(); ?>
