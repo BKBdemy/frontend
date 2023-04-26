@@ -30,8 +30,5 @@ Route::pathNotFound(function($path) {
     include('./pages/404.php');
 });
 
-
-if($_SERVER['REQUEST_URI'] === '/bkbdemy/impressum')  include('./pages/page-impressum.php');
-
 Route::run(get_basepath());
 exit;
