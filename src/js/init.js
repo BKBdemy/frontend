@@ -1,10 +1,10 @@
-jQuery(document).ready(function(){
+jQuery(document).ready(function () {
     initBurgerMenu();
-    initCourseSlider();
-    initMostWatchedSlider();
     initScrollUp();
-    fetchAPI();
-})
+    initGetNewProducts();
+    initGetMostWatchedProducts();
+    getSingleProduct();
+});
 
 function initBurgerMenu() {
 
@@ -76,7 +76,7 @@ function initScrollUp() {
         jQuery(window).scrollTop(0);
     })
 
-    jQuery(window).scroll(function() {
+    jQuery(window).scroll(function () {
         if (jQuery(this).scrollTop() > 150) {
             button.addClass('active')
         } else {
@@ -85,14 +85,107 @@ function initScrollUp() {
     });
 }
 
-async function fetchAPI() {
+async function initGetNewProducts() {
+    const slider = jQuery('.course-slider');
+    if (slider.length) {
+        fetch('/src/js/api.json')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(function (course) {
+                    const content =
+                        `
+                        <div class="single-course">
+                            <h3><?php echo $course['description'];?></h3>
+                            <p class="course-further-info">
+                                <span class="course-author-name">Tutor: Gibt API nicht her</span>
+                                <span class="course-duration">Dauer: Gibt API nicht her</span>
+                                <span class="course-price">Preis: ${course.Price}€</span>
+                            </p>
+                            <video>
+                                <source <!--src=""--> type="video/mp4">
+                            </video>
+                            <p class="course-excerpt">${course.Description}</p>
+                            <a class="secondary-button" href="https://bkbdemy.yfain.de/kurse/${course.ID}">Zum Kurs</a>
+                        </div>
+                    `
+                    slider.append(content);
+                })
 
-    fetch('https://bkbdemy.pxroute.net/api/products', {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error));
+            })
+            .then(() => {
+                initCourseSlider()
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+}
+
+async function initGetMostWatchedProducts() {
+    const slider = jQuery('.most-watched-slider');
+    if (slider.length) {
+        fetch('/src/js/api.json')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(function (course) {
+                    const content =
+                        `
+                        <div class="single-course">
+                            <h3><?php echo $course['description'];?></h3>
+                            <p class="course-further-info">
+                                <span class="course-author-name">Tutor: Gibt API nicht her</span>
+                                <span class="course-duration">Dauer: Gibt API nicht her</span>
+                                <span class="course-price">Preis: ${course.Price}€</span>
+                            </p>
+                            <video>
+                                <source <!--src=""--> type="video/mp4">
+                            </video>
+                            <p class="course-excerpt">${course.Description}</p>
+                            <a class="secondary-button" href="https://bkbdemy.yfain.de/kurse/${course.ID}">Zum Kurs</a>
+                        </div>
+                    `
+                    slider.append(content);
+                })
+
+            })
+            .then(() => {
+                initMostWatchedSlider()
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+}
+
+async function getSingleProduct() {
+    const container = jQuery('.single-course');
+    const bodyClass = jQuery('body').hasClass('page-single-course');
+    const URL = window.location.href;
+    const courseID = parseInt(URL.split('/kurse/')[1]);
+
+    if (bodyClass) {
+        fetch('/src/js/api.json')
+            .then(response => response.json())
+            .then(data => {
+                const course = data.find(product => product.ID === courseID);
+                const content = `
+                    <h3>${course.Name}</h3>
+                    <p class="course-further-info">
+                      <span class="course-author-name">Tutor: Gibt API nicht her</span>
+                      <span class="course-duration">Dauer: Gibt API nicht her</span>
+                      <span class="course-price">Preis: ${course.Price}€</span>
+                    </p>
+                    <video>
+                      <source src="${course.MPD_URL}" type="video/mp4">
+                    </video>
+                    <p class="course-excerpt">${course.Description}</p>
+                    <a class="secondary-button" href="#kaufen">Kurs kaufen</a>
+                    <a class="primary-button" href="https://bkbdemy.yfain.de/">Zurück</a>
+                `;
+                container.append(content);
+            })
+            .catch(error => {
+                console.error(error);
+        });
+    }
 }

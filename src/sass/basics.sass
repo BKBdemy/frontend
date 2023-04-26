@@ -1,5 +1,6 @@
 *
   transition: .3s ease-in-out
+  -webkit-tap-highlight-color: transparent
 
 html
   scroll-behavior: smooth
@@ -47,7 +48,8 @@ a, p
 
 main
   margin-top: 155px
-  min-height: 900px
+  @media (min-width: 700px)
+    min-height: 90vh
 
 .no-scroll
   overflow: hidden

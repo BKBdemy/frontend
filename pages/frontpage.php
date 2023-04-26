@@ -11,104 +11,17 @@
 
             <div class="new-courses-teaser">
                 <h1 class="course-headline section-headline">Unsere neuesten Kurse!</h1>
-                <?php /* createVideoSlider('course',[
-                        [
-                        'name' => 'go-course-231231',
-                        'description' => 'Learn GO with ease',
-                        'author' => 'Marc Brockhaus',
-                        'duration' => '16 Stunden',
-                        'price' => '99,99€',
-                        'video' => 'https://www.youtube.com/embed/YS4e4q9oBaU',
-                        'excerpt' => 'Lerne GOlang in wenigen Stunden'
-                        ],
-                        [
-                            'name' => 'java-script-10214142"',
-                            'description' => 'JS Full Stack',
-                            'author' => 'Timothy Roth',
-                            'duration' => '11 Stunden',
-                            'price' => '99,99€',
-                            'video' => 'https://www.youtube.com/embed/jS4aFq5-91M',
-                            'excerpt' => 'JS Fullstack im Handumdrehen'
-                        ],
-                        [
-                            'name' => 'python-script-10214142"',
-                            'description' => 'Python from 0 to hero ',
-                            'author' => 'Maja Mathefrau',
-                            'duration' => '322 Stunden',
-                            'price' => '99,99€',
-                            'video' =>'https://www.youtube.com/embed/rfscVS0vtbw',
-                            'excerpt' => 'Python - Der einzige Python-Kurs den du je brauchen wirst!'
-                        ]
-                    ]
-                ); */?>
+                <div class="course-slider"></div>
             </div>
         </div>
     </section>
+
     <section id="current-most-watched">
         <div class="wrapper">
             <h1 class="section-headline">Teilnehmer sehen sich gerade an</h1>
-            <?php /* createVideoSlider('most-watched',[
-                    [
-                        'name' => 'go-course-231231',
-                        'description' => 'Learn GO with ease',
-                        'author' => 'Marc Brockhaus',
-                        'duration' => '16 Stunden',
-                        'price' => '99,99€',
-                        'video' => 'https://www.youtube.com/embed/YS4e4q9oBaU',
-                        'excerpt' => 'Lerne GOlang in wenigen Stunden'
-                    ],
-                    [
-                        'name' => 'java-script-10214142"',
-                        'description' => 'JS Full Stack',
-                        'author' => 'Timothy Roth',
-                        'duration' => '11 Stunden',
-                        'price' => '99,99€',
-                        'video' => 'https://www.youtube.com/embed/jS4aFq5-91M',
-                        'excerpt' => 'JS Fullstack im Handumdrehen'
-                    ],
-                    [
-                        'name' => 'python-script-10214142"',
-                        'description' => 'Python from 0 to hero ',
-                        'author' => 'Maja Mathefrau',
-                        'duration' => '322 Stunden',
-                        'price' => '99,99€',
-                        'video' =>'https://www.youtube.com/embed/rfscVS0vtbw',
-                        'excerpt' => 'Python - Der einzige Python-Kurs den du je brauchen wirst!'
-                    ],
-                    [
-                        'name' => 'go-course-231231',
-                        'description' => 'Learn GO with ease',
-                        'author' => 'Marc Brockhaus',
-                        'duration' => '16 Stunden',
-                        'price' => '99,99€',
-                        'video' => 'https://www.youtube.com/embed/YS4e4q9oBaU',
-                        'excerpt' => 'Lerne GOlang in wenigen Stunden'
-                    ],
-                    [
-                        'name' => 'java-script-10214142"',
-                        'description' => 'JS Full Stack',
-                        'author' => 'Timothy Roth',
-                        'duration' => '11 Stunden',
-                        'price' => '99,99€',
-                        'video' => 'https://www.youtube.com/embed/jS4aFq5-91M',
-                        'excerpt' => 'JS Fullstack im Handumdrehen'
-                    ],
-                    [
-                        'name' => 'python-script-10214142"',
-                        'description' => 'Python from 0 to hero ',
-                        'author' => 'Maja Mathefrau',
-                        'duration' => '322 Stunden',
-                        'price' => '99,99€',
-                        'video' =>'https://www.youtube.com/embed/rfscVS0vtbw',
-                        'excerpt' => 'Python - Der einzige Python-Kurs den du je brauchen wirst!'
-                    ]
-                ]
-            ); */?>
+            <div class="most-watched-slider"></div>
         </div>
     </section>
-
-    <?php echo get_home_url(); ?>
-
 </main>
 
 <?php get_footer(); ?>

@@ -72,9 +72,16 @@ function get_template_uri() {
 }
 
 function get_home_url() {
+
+    $template_uri = str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath(dirname(__FILE__)));
+    $template_uri = str_replace('\\', '/', $template_uri);
+    $template_uri = rtrim($template_uri, '/');
+    $template_uri = str_replace('inc/functions', '', $template_uri);
+    $template_uri = rtrim($template_uri, '/');
     $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https://" : "http://";
     $domain = $_SERVER['HTTP_HOST'];
-    return $protocol . $domain;
+    return $protocol . $domain . $template_uri;
+
 }
 
 function get_body_class() {
@@ -92,6 +99,10 @@ function get_body_class() {
     $bodyClass = str_replace($template_uri, '', $bodyClass);
 
     if($bodyClass === "") return 'home';
+
+    if (strpos($bodyClass, 'kurse') !== false) {
+        return 'single page-single-course';
+    }
 
     return 'page-' . $bodyClass;
 
