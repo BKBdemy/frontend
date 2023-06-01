@@ -1,5 +1,15 @@
-/* Defining Global Variable*/
+/* Defining Global Variables or Objects*/
+
+/* This variable stores the current videos of the course when its initialized*/
 let currentCourse = null;
+/* This variable checks wether the token has already been verified once within the session or not*/
+let verifyToken = true;
+/* Caching the Video Data of a Course for reusing purposes, using a boolean to reset the cache when mandatory */
+let videoProgressCache = {
+    videos: {},
+    invalidated: true
+}
+
 
 /* These functions will initialize when the document (DOM) is ready */
 jQuery(document).ready(function () {
@@ -36,31 +46,24 @@ async function addComment(courseID) {
         comment: input.val()
     }
 
-    if (loginInput.comment !== "") {
-        fetch('https://bkbdemy.pxroute.net/api/products/' + courseID + '/comments', {
-            method: 'POST',
-            headers: new Headers({
-                'Authorization': 'Bearer ' + await getToken(),
-                'Content-Type': 'application/json'
-            }),
-            body: JSON.stringify(loginInput)
+    fetch('https://bkbdemy.pxroute.net/api/products/' + courseID + '/comments', {
+        method: 'POST',
+        headers: new Headers({
+            'Authorization': 'Bearer ' + await getToken(),
+            'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify(loginInput)
+    })
+        .then(response => response.json())
+        .then(() => {
+            loadCourseComments();
+            input.val("");
+            const button = jQuery('.submit-comment');
+            button.removeClass('disabled');
         })
-            .then(response => response.json())
-            .then(() => {
-                loadCourseComments();
-                input.val("");
-            })
-            .catch(error => {
-                console.error('Error:', error)
-            });
-    } else {
-        const container = jQuery('textarea');
-        container.addClass('animate');
-        setTimeout(function () {
-            container.removeClass('animate');
-        }, 1000)
-    }
-
+        .catch(error => {
+            console.error('Error:', error)
+        });
 }
 
 function loadCourseComments() {
@@ -146,9 +149,10 @@ function addToWatchedVideos() {
             const ID = videoId.split('video-')[1];
             const points = video.attr('data-src');
             video.on('ended', async function () {
+                videoProgressCache.invalidated = true;
                 await updateVideoProgress(ID, points);
                 try {
-                    const response = await fetch('https://bkbdemy.pxroute.net/api/video/' + parseInt(ID) + '/progress', {
+                    fetch('https://bkbdemy.pxroute.net/api/video/' + parseInt(ID) + '/progress', {
                         method: 'POST',
                         headers: new Headers({
                             'Authorization': 'Bearer ' + await getToken(),
@@ -189,9 +193,14 @@ function animateErrorMessage() {
     }, 1000)
 }
 
-async function getToken() {
+async function getToken(verifyToken) {
     const token = localStorage.getItem('authToken');
     try {
+
+        if (!verifyToken) {
+            return token;
+        }
+
         const response = await fetch('https://bkbdemy.pxroute.net/api/auth/me', {
             method: 'GET',
             headers: new Headers({
@@ -201,6 +210,7 @@ async function getToken() {
         });
         //const data = await response.json();
         if (response.status === 401) return null;
+        verifyToken = true;
         return token;
     } catch (error) {
         console.error('Error:', error);
@@ -226,6 +236,11 @@ async function getWatchedVideos() {
     const token = localStorage.getItem('authToken');
 
     try {
+
+        if (!videoProgressCache.invalidated) {
+            return videoProgressCache.videos;
+        }
+
         const response = await fetch('https://bkbdemy.pxroute.net/api/video/watched', {
             method: 'GET',
             headers: new Headers({
@@ -236,7 +251,9 @@ async function getWatchedVideos() {
 
         if (response.ok) {
             const data = await response.json();
-            return data;
+            videoProgressCache.videos = data;
+            videoProgressCache.invalidated = false;
+            return videoProgressCache.videos;
         } else {
             throw new Error('Failed to fetch watched videos');
         }
@@ -496,10 +513,21 @@ function renderAddComment(courseID) {
             </div>
         `
     container.append(html);
+
     const button = jQuery('.submit-comment');
+    const textarea = jQuery('textarea');
+
     button.on('click', async () => {
-        await addComment(courseID);
-    })
+        if (textarea.val() !== "") {
+            button.addClass('disabled');
+            await addComment(courseID);
+        } else {
+            textarea.addClass('animate');
+            setTimeout(function () {
+                textarea.removeClass('animate');
+            }, 1000)
+        }
+    });
 }
 
 function renderComments(data, amount) {
@@ -692,7 +720,7 @@ async function renderCourseVideos(videos) {
                 <h3><span id="video-progress-${video.IndexID}" class="${videoProgress}"></span>${video.Name} (${currentVideo} von ${courseLength})</h3>
                 <p class="points">${video.Points} Punkte</p>
                 <p>${video.Description}</p>
-                <video id="video-${video.IndexID}" data-src="${video.Points}" controls poster="https://bkbdemy.pxroute.net${video.Thumbnail}">
+                <video id="video-${video.IndexID}" data-src="${video.Points}" controls preload="metadata" poster="https://bkbdemy.pxroute.net${video.Thumbnail}">
                     <source src="https://bkbdemy.pxroute.net/api/video/${video.IndexID}/stream">
                 </video>
             </div>
