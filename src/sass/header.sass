@@ -3,19 +3,54 @@ header
   position: fixed
   top: 0
   left: 0
-  z-index: 1
+  z-index: 4
   width: 100%
   background: #fff
+  .info
+    background: $blue
+    padding: 10px 0
+    .wrapper
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      gap: 20px
+      @media screen and (min-width: 900px)
+        justify-content: space-between
+      .info-item
+        display: flex
+        align-items: center
+        gap: 10px
+        color: #ffffff
+        text-align: center
+        &.mail
+          a
+            display: flex
+            gap: 10px
+        img
+          width: 16px
+          height: auto
+          display: none
+          @media screen and (min-width: 900px)
+            display: block
   .wrapper
     nav
       display: flex
       align-items: center
       justify-content: space-between
       .home-logo
-        width: 150px
+        width: 120px
         position: relative
+        height: 120px
+        display: flex
+        align-items: center
+        @media screen and (min-width: 900px)
+          height: 155px
+          width: 155px
+        @media screen and (min-width: 1300px)
+          width: 200px
         img
           width: 100%
+          height: auto
       .burger-menu
         width: 40px
         cursor: pointer
@@ -38,7 +73,7 @@ header
         .stripe
           width: 100%
           height: 3px
-          background: $black
+          background: #6ca6cd
           border-radius: 10px
           margin: 10px 0
           transition: .3s ease-in-out
@@ -51,17 +86,25 @@ header
             display: flex
             list-style: none
             gap: 20px
+          .cookie-settings
+            font-weight: 500
+            position: absolute
+            left: 50%
+            transform: translateX(-50%)
+            color: #6CA6CD
         &.mobile
           display: none
           position: absolute
           overflow-x: scroll
           z-index: 10
           height: calc(100vh - 85.85px)
-          top: 155px
+          top: 120px
           left: 0
           width: 100%
           transition: opacity .3s ease-in-out
-          background: $black
+          background: $blue
+          & > div
+            justify-content: center
           ul
             display: flex
             flex-direction: column
@@ -72,7 +115,6 @@ header
             li
               a
                 color: #fff
-                background: $black
                 border: none
                 border-radius: 0
 

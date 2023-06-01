@@ -1,0 +1,139 @@
+.page-single-course
+  main
+    .wrapper
+      #search-filter
+        margin-bottom: 40px
+        display: flex
+        flex-direction: column
+        align-items: center
+        gap: 20px
+        @media screen and (min-width: 450px)
+          align-items: unset
+        .difficulty-filter
+          position: relative
+          z-index: 2
+          opacity: .6
+          font-weight: 500
+          width: max-content
+          @media screen and (min-width: 450px)
+            bottom: 70px
+            left: 210px
+          @media screen and (min-width: 500px)
+            left: 250px
+          @media screen and (min-width: 600px)
+            left: 350px
+          &:hover
+            .dropdown
+              opacity: 1
+              max-height: 1000px
+            .dropown-title
+              cursor: pointer
+              border-bottom-right-radius: 0
+              border-bottom-left-radius: 0
+              img
+                rotate: 180deg
+          .dropown-title
+            padding: 13px 20px 12px
+            font-size: 18px
+            gap: 40px
+            background: #ffffff
+            border-radius: 30px
+            display: flex
+            align-items: center
+            img
+              width: 25px
+              height: auto
+          .dropdown
+            position: absolute
+            z-index: 2
+            top: 40px
+            left: 0
+            width: 172px
+            display: flex
+            flex-direction: column
+            gap: 10px
+            border-bottom-left-radius: 30px
+            border-bottom-right-radius: 30px
+            opacity: 0
+            max-height: 0
+            background: #ffffff
+            padding: 20px
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)
+            div
+              display: flex
+              justify-content: space-between
+              font-size: 18px
+              padding-bottom: 10px
+              &:not(:last-child)
+                border-bottom: 1px solid #1c1d1f
+              input
+                width: 15px
+                height: 15px
+                &:checked
+                  background: #6CA6CD
+
+        .title-filter
+          flex-grow: 0
+          width: max-content
+          display: flex
+          gap: 20px
+          align-items: center
+          padding: 10px
+          background: #ffffff
+          border-radius: 30px
+          input
+            border: none
+            outline: none
+            font-size: 18px
+            font-family: $font
+            color: #6CA6CD
+            font-weight: 500
+            &::placeholder
+              color: #1c1d1f
+          img
+            opacity: .6
+            width: 30px
+            height: auto
+      #results
+        position: relative
+        display: flex
+        flex-wrap: wrap
+        gap: 20px
+        .single-course
+          background: #fff
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)
+          border-radius: 30px
+          position: relative
+          display: flex
+          flex-direction: column
+          padding: 20px
+          width: calc(100% - 50px)
+          &.hide
+            display: none
+          &:hover
+            transform: translateZ(20px)
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 12px 36px rgba(0, 0, 0, 0.2)
+            img
+              transform: scale(1.01)
+          @media screen and (min-width: 700px)
+            width: calc(50%  - 50px)
+          @media screen and (min-width: 1200px)
+            width: calc(33% - 50px)
+          h3
+            margin-bottom: 0
+          p:first-of-type
+            margin-top: 0
+            font-style: italic
+            font-size: 16px
+          img
+            width: 100%
+            height: auto
+            object-fit: cover
+            border-radius: 10px
+          .secondary-button
+            border-radius: 0
+            display: inline-block
+            margin-top: auto
+          .course-further-info
+            display: flex
+            flex-direction: column

@@ -1,27 +1,37 @@
 <?php get_header(); ?>
 
 <main>
-    <section id="teaser">
-        <div class="wrapper">
-            <div class="registration-teaser">
-                <h2>Registriere dich und genieße die Vorteile der BKBdemy Academy</h2>
-                <p>Willkommen in der BKBdemy Academy! Hier findest du eine breite Palette an spannenden Kursen, die von erfahrenen Experten entwickelt wurden und dir dabei helfen, neue Fähigkeiten zu erlernen und dein Wissen zu erweitern. Egal, ob du dich beruflich weiterentwickeln oder einfach nur deine persönlichen Interessen vertiefen möchtest, unsere Kurse bieten dir das Wissen und die Werkzeuge, die du brauchst, um deine Ziele zu erreichen. Registriere dich jetzt und tauche ein in die Welt der BKBdemy Academy! </p>
-                <a class="secondary-button" href="<?php echo get_home_url(); ?>/registrierung">Registrieren</a>
-            </div>
 
-            <div class="new-courses-teaser">
-                <h1 class="course-headline section-headline">Unsere neuesten Kurse!</h1>
-                <div class="course-slider"></div>
-            </div>
-        </div>
+    <section id="frontpage-slider">
+        <?php
+            /* including the content for the frontage image slider*/
+            include_once('content/frontpage-slider-content.php'); ?>
+    </section>
+
+    <section id="teaser">
+        <?php
+            /* including the content for the frontage teaser content*/
+            include_once('content/teaser-content.php'); ?>
+    </section>
+
+    <section id="shop-teaser">
+        <?php
+            /* including the content for the shop teaser content*/
+            include_once('content/shop-teaser-content.php'); ?>
     </section>
 
     <section id="current-most-watched">
-        <div class="wrapper">
-            <h1 class="section-headline">Teilnehmer sehen sich gerade an</h1>
-            <div class="most-watched-slider"></div>
-        </div>
+        <?php
+            /* including the content for the current most watched content*/
+            include_once('content/current-most-watched-content.php'); ?>
     </section>
+
+    <section id="news">
+        <?php
+            /* including content for the news content*/
+            include_once('content/news-content.php'); ?>
+    </section>
+
 </main>
 
 <?php get_footer(); ?>

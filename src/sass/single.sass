@@ -1,18 +1,179 @@
 .single
   main
     .wrapper
+      .comment-container
+        display: flex
+        flex-direction: column
+        gap: 40px
+        max-width: unset
+        margin-top: 40px
+        @media screen and (min-width: 900px)
+          flex-direction: row-reverse
+        @media screen and (min-width: 1300px)
+          margin-top: 100px
+        .container
+          width: 100%
+          @media screen and (min-width: 900px)
+            width: calc(50% - 20px)
+          &.write-comment
+            display: flex
+            flex-direction: column
+            gap: 10px
+            h3
+              margin: 0
+            textarea
+              color: $black
+              width: calc(100% - 20px)
+              @media screen and (min-width: 900px)
+                min-height: 284px
+              &::placeholder
+                color: #1c1d1f
+          &.read-comments
+            display: none
+            flex-direction: column
+            max-height: 400px
+            overflow-y: scroll
+            .show-more
+              margin-top: 20px
+            .single-comment
+              display: flex
+              flex-direction: column
+              gap: 10px
+              padding: 10px 0
+              &:not(:last-of-type)
+                border-bottom: 1px solid #0000004D
+              h3, p
+                margin: 0
+              p:first-of-type
+                position: relative
+                bottom: 5px
+                font-style: italic
+                font-size: 14px
       .single-course
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)
-        position: relative
-        width: calc(100% - 40px)
-        max-width: 900px
-        background: #fff
-        padding: 20px
-        margin: 200px 0 100px
-        @media screen and (min-width: 700px)
-          padding: 40px
-          width: calc(100% - 80px)
-          margin: 200px 0 0
-        .course-further-info
+        @media screen and (min-width: 1300px)
+          &:hover
+            img
+              transform: scale(1.01)
+        h1
+          color: #6ca6cd
+        p:first-of-type
+          margin-top: 5px
+          margin-bottom: 0
+        .shop-teaser
+          margin-top: auto
+          line-height: 2
+          font-weight: 500
+          font-size: 18px
+        .content-wrapper
+          margin-top: 20px
           display: flex
           flex-direction: column
+          background: #ffffff
+          padding: 20px
+          border-radius: 30px
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)
+          &:hover
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 12px 36px rgba(0, 0, 0, 0.2)
+          @media screen and (min-width: 900px)
+            flex-direction: row
+            padding: 40px
+            gap: 20px
+          .top
+            display: flex
+            flex-direction: column
+            video
+              width: 100%
+              object-fit: contain
+              border-radius: 10px
+              margin: 20px 0
+              @media screen and (min-width: 900px)
+                width: unset
+                max-width: 445px
+          .bottom
+            display: flex
+            flex-direction: column
+            gap: 20px
+            width: 100%
+            h3
+              margin: 0
+              color: #6ca6cd
+            p
+              margin: 0
+            .button-row
+              display: flex
+              gap: 20px
+              @media screen and (min-width: 1300px)
+                margin-top: auto
+                align-self: flex-end
+            .course-further-info
+              display: flex
+              flex-direction: column
+              color: #6ca6cd
+          .course-excerpt
+            margin-bottom: 30px
+        .course-progress-wrapper
+          .content-wrapper
+            display: flex
+            flex-direction: column
+            gap: 20px
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)
+            &:hover
+              box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 12px 36px rgba(0, 0, 0, 0.2)
+            @media screen and (min-width: 1300px)
+              flex-direction: row
+              justify-content: space-between
+            h3
+              margin-top: 0
+            .top
+              .course-difficulty
+                font-weight: 600
+              .course-progress
+                font-weight: 600
+                color: #6ca6cd
+                margin-top: 0
+              img
+                width: 100%
+                height: auto
+                border-radius: 10px
+                max-width: 500px
+                object-fit: contain
+            .bottom
+              max-width: 700px
+              .single-video
+                position: relative
+                width: 100%
+                display: flex!important
+                flex-direction: column
+                gap: 10px
+                .points
+                  color: $black
+                  font-weight: 400
+                  margin-top: 0
+                  font-style: italic
+                  font-size: 18px
+                  position: relative
+                  bottom: 10px
+                  display: flex
+                  justify-content: flex-end
+                  @media screen and (min-width: 500px)
+                h3
+                  display: flex
+                  align-items: flex-start
+                  @media screen and (min-width: 700px)
+                    align-items: unset
+                  span
+                    &.Abgeschlossen
+                      &:after
+                        content: ""
+                        background: url("/assets/images/icons/check.png") no-repeat
+                        width: 30px
+                        height: 30px
+                        background-size: 30px 30px
+                        display: inline-block
+                        margin-right: 5px
+                p, h3
+                  margin: 0
+                videos
+                  width: 100%
+                  height: auto
+                  border-radius: 10px

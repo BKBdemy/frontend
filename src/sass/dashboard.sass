@@ -1,0 +1,195 @@
+.page-dashboard
+  main
+    .wrapper
+      .dashboard-content-wrapper
+        @media screen and (min-width: 1300px)
+          display: flex
+          gap: 100px
+        nav
+          ul
+            list-style-type: none
+            display: flex
+            background: #fff
+            text-align: center
+            padding: 0
+            border-radius: 15px
+            width: 100%
+            margin: 0 auto
+            @media screen and (min-width: 400px)
+              width: max-content
+            @media screen and (min-width: 500px)
+              margin: unset
+            @media screen and (min-width: 1300px)
+              flex-direction: column
+              align-items: flex-start
+            li
+              display: flex
+              align-items: center
+              cursor: pointer
+              font-weight: 500
+              padding: 5px
+              @media screen and (min-width: 500px)
+                width: 100%
+                padding: 10px
+                color: #6CA6CD
+              &:first-of-type
+                @media screen and (min-width: 1300px)
+                  border-top-left-radius: 15px
+                  border-top-right-radius: 15px
+              &:last-of-type
+                @media screen and (min-width: 1300px)
+                  border-bottom-left-radius: 15px
+                  border-bottom-right-radius: 15px
+              &:not(:last-of-type)
+                @media screen and (min-width: 1300px)
+                  border-bottom: 1px solid #6CA6CD
+              &.active
+                color: #ffffff
+                background: #6CA6CD
+        #log-in-message
+          margin-top: 100px
+          a
+            color: #6CA6CD
+            text-decoration: underline
+        .dashboard-container
+          display: none
+          width: calc(100% - 20px)
+          margin-top: 20px
+          @media screen and (min-width: 1300px)
+            margin-top: 0
+          &.active
+            display: block
+            animation: zoomIn
+            animation-duration: 1s
+        #my-account
+          max-width: 600px
+          p:first-of-type
+            display: flex
+            flex-direction: column
+            gap: 5px
+            @media screen and (min-width: 400px)
+              flex-wrap: wrap
+              flex-direction: row
+            #username
+              font-weight: 600
+              text-transform: uppercase
+            #user-level
+              font-weight: 500
+              font-style: italic
+              color: #6ca6cd
+              @media screen and (min-width: 400px)
+                margin-left: auto
+        #my-courses
+          position: relative
+          .further-courses
+            display: flex
+            margin-bottom: 20px
+            margin-top: 20px
+            @media screen and (min-width: 500px)
+              margin-top: unset
+            @media screen and (min-width: 1300px)
+            .secondary-button
+              background: #ffffff
+              color: #6ca6cd!important
+              border: 1px solid #6ca6cd
+              @media screen and (min-width: 500px)
+                margin-left: auto
+                &:hover
+                  background: #6ca6cd
+                  color: #ffffff!important
+          #owned-courses
+            position: relative
+            display: flex
+            flex-wrap: wrap
+            gap: 20px
+            .single-course
+              background: #fff
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)
+              border-radius: 30px
+              position: relative
+              display: flex
+              flex-direction: column
+              padding: 20px
+              width: calc(100% - 40px)
+              @media screen and (min-width: 1300px)
+                &:hover
+                  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15), 0 12px 36px rgba(0, 0, 0, 0.2)
+                  img
+                    transform: scale(1.01)
+              @media screen and (min-width: 700px)
+                width: calc(50%  - 50px)
+              @media screen and (min-width: 1200px)
+                width: calc(33% - 50px)
+              h3
+                margin-bottom: 0
+              p:first-of-type
+                margin-top: 0
+                font-style: italic
+                font-size: 16px
+              img
+                width: 100%
+                height: auto
+                object-fit: cover
+                border-radius: 10px
+              .secondary-button
+                border-radius: 0
+                display: inline-block
+                margin-top: auto
+              .course-further-info
+                display: flex
+                flex-direction: column
+        #my-currency
+          #current-balance
+            font-weight: 500
+          p
+            &:first-child
+              margin-bottom: 0
+            &:last-child, &:nth-child(2)
+              font-style: italic
+              margin-top: 5px
+            &:nth-child(2)
+              margin-bottom: 40px
+          .increase-balance
+            display: flex
+            flex-wrap: wrap
+            align-items: center
+            gap: 20px
+            background: #ffffff
+            @media  screen and (min-width: 500px)
+              min-width: 280px
+              width: max-content
+            img
+              width: 25px
+              height: auto
+              @media  screen and (min-width: 500px)
+                width: 40px
+            .user-input
+              display: flex
+              gap: 20px
+              align-items: center
+              input
+                border: none
+                font-size: 18px
+                color: #6ca6cd
+                font-weight: 500
+                outline: none
+              img
+                width: 25px
+                height: auto
+                @media screen and (min-width: 500px)
+                  width: 40px
+            #increase-balance-button
+              cursor: pointer
+              &:hover
+                transform: scale(1.01)
+          .response-message
+            p
+              padding: 20px
+              max-width: 500px
+              margin: 20px 0
+              &.success
+                color: green
+                border: 1px solid green
+              &.error
+                color: #ff4136
+                border: 1px solid #ff4136
