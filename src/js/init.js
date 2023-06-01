@@ -18,9 +18,9 @@ jQuery(document).ready(function () {
     initScroll();
     initFrontpageSlider();
     initNewsSlider();
-    initCookieNotice();
 
     /*Initialize User Status*/
+    initCookieNotice();
     initLogin();
     initLogout();
     initRegistration();
@@ -59,6 +59,7 @@ async function addComment(courseID) {
             loadCourseComments();
             input.val("");
             const button = jQuery('.submit-comment');
+            /* Removing the class that is added when clicking the button*/
             button.removeClass('disabled');
         })
         .catch(error => {
@@ -307,8 +308,8 @@ function setCookie(name, value, expires) {
     document.cookie = `${name}=${value}; expires=${expiresUTC}; path=/`;
 }
 
-async function updateCourseProgress(currentCourse) {
-    const progress = await getCourseProgress(currentCourse);
+async function updateCourseProgress(updatedCourseMeta) {
+    const progress = await getCourseProgress(updatedCourseMeta);
     const container = jQuery('.course-progress');
     container.html("Kursfortschritt: " + progress + '%');
 }
