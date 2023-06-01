@@ -1,25 +1,33 @@
 <?php
 
-function get_header() {
+function get_header()
+{
 
     include('./pages/assets/header.php');
 }
 
-function get_footer() {
+function get_footer()
+{
 
     include('./pages/assets/footer.php');
 
 }
 
-function create_nav_bar($menuPosition, $links) {
+function create_nav_bar($menuPosition, $links)
+{
 
     ob_start(); ?>
 
     <ul class="menu-<?php echo $menuPosition ?>">
-        <?php foreach ($links as $link): ?>
+        <?php foreach ($links as $link):
+            $urlCheck = true;
+            if ($link['url'] === '') $urlCheck = false;
+            if ($urlCheck) $url = 'href="' . get_home_url() . $link['url'] . '"'; else $url = '';
+
+            ?>
             <li>
-                <a class="<?php echo $link['class']; ?>" href="<?php echo get_home_url() . $link['url']; ?>">
-                    <?php echo $link['linkText']; ?>
+                <a class="<?php echo $link['class']; ?>"<?= $url; ?>">
+                <?php echo $link['linkText']; ?>
                 </a>
             </li>
         <?php endforeach; ?>
@@ -28,13 +36,14 @@ function create_nav_bar($menuPosition, $links) {
     <?php echo ob_get_clean();
 }
 
-function createVideoSlider($class,$courseData) {
+function createVideoSlider($class, $courseData)
+{
     ob_start(); ?>
 
     <div class="<?php echo $class; ?>-slider">
         <?php foreach ($courseData as $course): ?>
             <div class="single-course">
-                <h3><?php echo $course['description'];?></h3>
+                <h3><?php echo $course['description']; ?></h3>
                 <p class="course-further-info">
                     <span class="course-author-name">Tutor: <?php echo $course['author']; ?></span>
                     <span class="course-duration">Dauer: <?php echo $course['duration']; ?></span>
@@ -43,8 +52,9 @@ function createVideoSlider($class,$courseData) {
                 <video>
                     <source src="<?php echo $course['video']; ?>" type="video/mp4">
                 </video>
-                <p class="course-excerpt"><?php echo $course['excerpt'];?></p>
-                <a class="secondary-button" href="<?php echo get_home_url() ?>/kurse/<?php echo $course['name'] ?>">Zum Kurs</a>
+                <p class="course-excerpt"><?php echo $course['excerpt']; ?></p>
+                <a class="secondary-button" href="<?php echo get_home_url() ?>/kurse/<?php echo $course['name'] ?>">Zum
+                    Kurs</a>
             </div>
         <?php endforeach; ?>
     </div>
@@ -52,7 +62,8 @@ function createVideoSlider($class,$courseData) {
     <?php echo ob_get_clean();
 }
 
-function get_template_uri() {
+function get_template_uri()
+{
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
     $script_dir = __DIR__;
     $template_uri = str_replace($doc_root, '', $script_dir);
@@ -71,7 +82,8 @@ function get_template_uri() {
     return $template_uri;
 }
 
-function get_home_url() {
+function get_home_url()
+{
 
     $template_uri = str_replace($_SERVER['DOCUMENT_ROOT'], '', realpath(dirname(__FILE__)));
     $template_uri = str_replace('\\', '/', $template_uri);
@@ -84,7 +96,8 @@ function get_home_url() {
 
 }
 
-function get_body_class() {
+function get_body_class()
+{
 
     $doc_root = $_SERVER['DOCUMENT_ROOT'];
     $script_dir = __DIR__;
@@ -98,7 +111,7 @@ function get_body_class() {
     $bodyClass = str_replace('/', '', $bodyClass);
     $bodyClass = str_replace($template_uri, '', $bodyClass);
 
-    if($bodyClass === "") return 'home';
+    if ($bodyClass === "") return 'home';
 
     if (strpos($bodyClass, 'kurse') !== false) {
         return 'single page-single-course';
@@ -108,7 +121,8 @@ function get_body_class() {
 
 }
 
-function get_basepath() {
+function get_basepath()
+{
 
     $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
     if ($basePath == '/' || $basePath == '\\') {
