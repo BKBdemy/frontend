@@ -97,6 +97,11 @@
                             'linkText' => 'Cookie Einstellungen'
                         ],
                         [
+                            'class' => 'primary-button shop-button',
+                            'url' => '/kurse',
+                            'linkText' => 'Shop'
+                        ],
+                        [
                             'class' => 'primary-button',
                             'url' => '/anmeldung',
                             'linkText' => 'Anmelden'
@@ -114,6 +119,11 @@
                             'class' => 'cookie-settings',
                             'url' => '',
                             'linkText' => 'Cookie Einstellungen'
+                        ],
+                        [
+                            'class' => 'primary-button shop-button',
+                            'url' => '/kurse',
+                            'linkText' => 'Shop'
                         ],
                         [
                             'class' => 'primary-button',
@@ -143,6 +153,11 @@
                             'url' => '/registrierung',
                             'linkText' => 'Registrieren'],
                         [
+                            'class' => 'mobile-button',
+                            'url' => '/kurse',
+                            'linkText' => 'Shop'
+                        ],
+                        [
                             'class' => 'cookie-settings',
                             'url' => '#cookie-settings',
                             'linkText' => 'Cookie Einstellungen'
@@ -160,6 +175,11 @@
                             'class' => 'mobile-button',
                             'url' => '/abmeldung',
                             'linkText' => 'Abmelden'],
+                        [
+                            'class' => 'mobile-button',
+                            'url' => '/kurse',
+                            'linkText' => 'Shop'
+                        ],
                         [
                             'class' => 'cookie-settings',
                             'url' => '#cookie-settings',

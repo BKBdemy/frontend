@@ -24,9 +24,6 @@
                             </p>
                         </div>
                         <div class="dashboard-container" id="my-courses">
-                            <div class="further-courses">
-                                <a class="secondary-button" href="<?= get_home_url(); ?>/kurse">zum Shop</a>
-                            </div>
                             <div id="owned-courses"></div>
                         </div>
                         <div class="dashboard-container content-container" id="my-currency">

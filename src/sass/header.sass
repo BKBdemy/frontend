@@ -92,6 +92,13 @@ header
             left: 50%
             transform: translateX(-50%)
             color: #6CA6CD
+          .shop-button
+            opacity: 0
+            @media screen and (min-width: 1000px)
+              opacity: 1
+            &:hover
+              background: #ffffff!important
+              color: #6ca6cd!important
         &.mobile
           display: none
           position: absolute
