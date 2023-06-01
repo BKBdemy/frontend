@@ -59,7 +59,7 @@ module.exports = {
         ],
     },
     devtool: "source-map",
-    watch: true,
+    watch: false,
     watchOptions: {
         ignored: '**/node_modules',
         poll: 1000
