@@ -36,6 +36,8 @@
             flex-direction: column
             max-height: 400px
             overflow-y: scroll
+            @media screen and (min-width: 700px)
+              min-height: 410px
             .show-more
               margin-top: 20px
             .single-comment
@@ -67,7 +69,7 @@
           line-height: 2
           font-weight: 500
           font-size: 18px
-          @media screen and (min-width: 900px)
+          @media screen and (min-width: 1300px)
             margin-top: auto
         .content-wrapper
           margin-top: 20px
@@ -108,6 +110,7 @@
             .button-row
               display: flex
               gap: 20px
+              align-items: flex-start
               @media screen and (min-width: 1300px)
                 margin-top: auto
                 align-self: flex-end
@@ -115,9 +118,11 @@
               display: flex
               flex-direction: column
               color: #6ca6cd
+              font-weight: 400
           .course-excerpt
             margin-bottom: 30px
         .course-progress-wrapper
+          margin-bottom: 100px
           .content-wrapper
             display: flex
             flex-direction: column
@@ -133,10 +138,7 @@
             .top
               .course-difficulty
                 font-weight: 600
-              .course-progress
-                font-weight: 600
-                color: #6ca6cd
-                margin-top: 0
+                margin-bottom: 20px
               img
                 width: 100%
                 height: auto
@@ -152,12 +154,12 @@
                 flex-direction: column
                 gap: 10px
                 .points
+                  margin-top: 20px
                   font-weight: 400
                   padding: 10px
                   border-radius: 20px
                   background-color: #6ca6cd
                   color: #ffffff
-                  margin-top: 0
                   font-style: italic
                   font-size: 18px
                   position: relative
@@ -172,6 +174,7 @@
                 h3
                   display: flex
                   align-items: flex-start
+                  font-weight: 400
                   @media screen and (min-width: 700px)
                     align-items: unset
                   span

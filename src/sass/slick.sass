@@ -111,20 +111,25 @@ ul.slick-dots
       display: none
     button
       overflow: hidden
-      width: 20px
-      height: 20px
-      margin: 0 8px
+      width: 10px
+      height: 10px
+      margin: 0 4px
       padding: 0
       background: #CCCCCC
       border: none
       color: #CCCCCC
       cursor: pointer
+      @media screen and (min-width: 1300px)
+        width: 20px
+        height: 20px
+        margin: 0 8px
     &.slick-active
       button
         color: $blue
         background: $blue
-        height: 20px
+        height: 10px
         @media screen and (min-width: 1300px)
+          height: 20px
           color: #6CA6CD
           background: #6CA6CD
 

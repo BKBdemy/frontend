@@ -6,10 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BKBdemy</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="<?php echo get_template_uri() ?>/dist/main.min.js"></script>
     <link rel="stylesheet" href="<?php echo get_template_uri(); ?>dist/main.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">-->
     <link rel="icon" type="image/x-icon" href="<?php echo get_template_uri(); ?>/assets/images/icons/favicon.svg">
 </head>
 <body class="<?php echo get_body_class(); ?>">
@@ -186,6 +185,19 @@
                             'linkText' => 'Cookie Einstellungen'
                         ]
                     ]); ?>
+                </div>
+                <div class="info-mobile">
+                    <div class="wrapper">
+                        <div class="info-item mail">
+                            <a href="mailto:info@bkbdemy.de"><img
+                                        src="<?= get_template_uri(); ?>/assets/images/icons/mail-white.svg"><span>info@bkbdemy.de</span></a>
+                        </div>
+                        <div class="info-item phone">
+                            <img src="<?= get_template_uri(); ?>/assets/images/icons/phone-white.svg"><span> Telefonische Unterstützung und Beratung unter: <a
+                                        href="tel:0251-123456">0251-123456</a></span>
+                        </div>
+                        <div class="info-item opening-times">Mo-Fr, 08.00 bis 18.00Uhr</div>
+                    </div>
                 </div>
             </div>
         </nav>

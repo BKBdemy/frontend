@@ -34,7 +34,7 @@
                             <div class="increase-balance">
                                 <div class="user-input">
                                     <img src="<?= get_template_uri(); ?>/assets/images/icons/icons8-muenzen-50.png">
-                                    <input type="number" min="1" name="userBalance">
+                                    <input type="number" min="1" name="userBalance" placeholder=0>
                                 </div>
                                 <img id="increase-balance-button"
                                      src="<?= get_template_uri(); ?>/assets/images/icons/icons8-hinzufuegen-50.png">

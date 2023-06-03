@@ -40,6 +40,19 @@ jQuery(document).ready(function () {
 })
 
 /* callback functions */
+
+function progressBar(courseProgress, progressBarElement, progressTextElement) {
+    const progressBar = jQuery(progressBarElement);
+    const courseProgressText = jQuery(progressTextElement);
+    progressBar.width(`${courseProgress}%`);
+
+    courseProgressText.text(courseProgress === 100 ? 'Abgeschlossen' : `Kursfortschritt: ${courseProgress.toFixed(2)}%`);
+
+    return courseProgress.toFixed(2);
+}
+
+
+
 async function addComment(courseID) {
     const input = jQuery('.write-comment textarea');
     const loginInput = {
@@ -105,8 +118,8 @@ async function addBalance(amount) {
 function courseVideoSlider() {
     const container = jQuery('.course-progress-wrapper .bottom');
     jQuery(container).slick({
-        arrows: true,
-        dots: false,
+        arrows: false,
+        dots: true,
         infinite: true,
         autoplay: false,
         adaptiveHeight: false,
@@ -132,12 +145,12 @@ async function getCourseProgress(videos) {
         });
 
         const length = videos.length;
-        const courseProgress = watched / length * 100;
+        const courseProgress = (watched / length) * 100;
+        return courseProgress;
 
-        return courseProgress.toFixed(2);
-    } else {
-        return 0;
     }
+
+    return 0;
 }
 
 function addToWatchedVideos() {
@@ -310,8 +323,7 @@ function setCookie(name, value, expires) {
 
 async function updateCourseProgress(updatedCourseMeta) {
     const progress = await getCourseProgress(updatedCourseMeta);
-    const container = jQuery('.course-progress');
-    container.html("Kursfortschritt: " + progress + '%');
+    progressBar(progress, jQuery('.progress-bar').last(), jQuery('.progress-bar-text').last());
 }
 
 function purchaseCourse(courseID, loggedIn) {
@@ -328,16 +340,7 @@ function purchaseCourse(courseID, loggedIn) {
                 })
             })
                 .then(response => {
-                    if (response.status === 200) {
-                        window.location.href = getHomeUrl() + '/kurse/' + courseID;
-                    } else {
-                        const container = jQuery('.page-single-course .error-message');
-                        container.addClass('active');
-                        container.addClass('animate');
-                        setTimeout(function () {
-                            container.removeClass('animate');
-                        }, 1000);
-                    }
+                    response.status === 200 ? window.location.href = getHomeUrl() + '/kurse/' + courseID : animateErrorMessage();
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -619,27 +622,32 @@ function renderMostWatchedProducts(data, slider) {
     });
 }
 
-function renderOwnedProducts(products) {
+async function renderOwnedProducts(products) {
     const container = jQuery('#owned-courses');
     if (container.length && products.length) {
-
-        jQuery.each(products, function (index, product) {
-            const content =
-                `
-            <div class="single-course">
-                            <h3>${product.Name}</h3>
-                            <p>Schwierigkeit: ${returnDifficulty(product.Difficulty)}</p>
-                            <img src="https://bkbdemy.pxroute.net${product.Image}">
-                            <p class="course-excerpt">${product.Description}</p>                         
-                            <a class="secondary-button" href="${getHomeUrl()}/kurse/${product.ID}">Zum Kurs</a>
-                        </div>
-           `
+        for (const product of products) {
+            const progress = await getCourseProgress(product.Videos);
+            const content = `
+        <div class="single-course">
+          <h3>${product.Name}</h3>
+          <p class="course-difficulty">Schwierigkeit: ${returnDifficulty(product.Difficulty)}</p>
+          <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+            <span class="progress-bar-text"></span>
+          </div>    
+          <img src="https://bkbdemy.pxroute.net${product.Image}">
+          <p class="course-excerpt">${product.Description}</p>                         
+          <a class="secondary-button" href="${getHomeUrl()}/kurse/${product.ID}">Zum Kurs</a>
+        </div>
+      `;
             container.append(content);
-        })
+            progressBar(progress, container.find('.progress-bar').last(), container.find('.progress-bar-text').last());
+        }
     } else {
-        container.html('Derzeit gehören dir keine Kurse.')
+        container.html('Derzeit gehören dir keine Kurse.');
     }
 }
+
 
 function renderSingleCourseResult(data, container) {
     data.forEach(function (course) {
@@ -670,8 +678,11 @@ async function renderCourse(data, products, courseID) {
                         <div class="content-wrapper">
                             <div class="top">   
                                 <p class="course-difficulty">Schwierigkeit: ${returnDifficulty(data.Difficulty)}</p>
-                                <p class="course-progress">Kursfortschritt: ${progress}%</p>
-                                <img src="https://bkbdemy.pxroute.net${data.Image}">
+                               <img src="https://bkbdemy.pxroute.net${data.Image}">
+                                <div class="progress-bar-container">
+                                  <div class="progress-bar"></div>
+                                  <span class="progress-bar-text"></span>
+                                </div>            
                                 <p class="shop-teaser">Weitere coole Kurse findest du hier bei uns im <a class="primary-button" href="${getHomeUrl()}/kurse">Shop</a></p>
                             </div>
                             <div class="bottom">
@@ -680,6 +691,9 @@ async function renderCourse(data, products, courseID) {
                         </div>
                     </div>
                      `
+        setTimeout(() => {
+            progressBar(progress, container.find('.progress-bar').last(), container.find('.progress-bar-text').last());
+        }, 1)
         renderAddComment(courseID);
     } else {
         content = `
@@ -707,6 +721,11 @@ async function renderCourse(data, products, courseID) {
                 `;
     }
     container.append(content);
+
+    const backButton = jQuery('a[href="#zurück"]');
+    backButton.on('click', function () {
+        window.history.back();
+    })
 }
 
 async function renderCourseVideos(videos) {
@@ -764,13 +783,13 @@ function initCookieNotice() {
 
 
     acceptCookies.on('click', function () {
-        setCookie('accept-cookie-notice', '1', 30);
+        setCookie('accept-cookie-notice', '1', 1440);
         cookieNoticeContainer.removeClass('active');
     })
 
     denyCookies.on('click', function () {
         /* Usually here you will be redirected but in this Project denying = accepting is okay since its just for showcase purposes */
-        setCookie('accept-cookie-notice', '1', 30);
+        setCookie('accept-cookie-notice', '1', 1440);
         cookieNoticeContainer.removeClass('active');
     })
 
@@ -807,14 +826,11 @@ async function initLoadUserData() {
 }
 
 async function initHandleUserContainer() {
+
     const loggedInContainer = jQuery('.user-logged-in');
     const loggedOutContainer = jQuery('.user-logged-out');
+    await getToken() ? loggedInContainer.addClass('active') : loggedOutContainer.addClass('active');
 
-    if (await getToken()) {
-        loggedInContainer.addClass('active')
-    } else {
-        loggedOutContainer.addClass('active');
-    }
 }
 
 function initLogout() {
@@ -980,8 +996,8 @@ function initMostWatchedSlider() {
 
     if (container.length) {
         jQuery(container).slick({
-            arrows: true,
-            dots: false,
+            arrows: false,
+            dots: true,
             infinite: true,
             autoplay: true,
             autoplaySpeed: 5000,
@@ -993,17 +1009,8 @@ function initMostWatchedSlider() {
                     breakpoint: 900,
                     settings: {
                         slidesToShow: 1,
-                        dots: true,
-                        arrows: false
                     }
                 },
-                {
-                    breakpoint: 1600,
-                    settings: {
-                        dots: true,
-                        arrows: false
-                    }
-                }
             ]
         });
     }
@@ -1114,10 +1121,6 @@ async function initLoadSingleProduct() {
             })
             .then(async () => {
                 addToWatchedVideos();
-                const backButton = jQuery('a[href="#zurück"]');
-                backButton.on('click', function () {
-                    window.history.back();
-                })
                 purchaseCourse(courseID, loggedIn);
             })
             .catch(error => {
@@ -1128,16 +1131,18 @@ async function initLoadSingleProduct() {
 
 function initDashboardNavigation() {
     const navItem = jQuery('.page-dashboard nav ul li');
+    const contentContainers = jQuery('.dashboard-container');
+
     navItem.on('click', function () {
         const item = jQuery(this);
         const target = jQuery(item.attr('data-src'));
-        const contentContainers = jQuery('.dashboard-container');
 
-        contentContainers.not(target).removeClass('active');
+        contentContainers.removeClass('active');
         target.addClass('active');
+
+        navItem.removeClass('active');
         item.addClass('active');
-        navItem.not(item).removeClass('active');
-    })
+    });
 }
 
 async function initIncreaseUserBalance() {
@@ -1148,35 +1153,34 @@ async function initIncreaseUserBalance() {
 
     button.on('click', async function () {
         await addBalance(inputField.val());
-        const userData = await getUserData();
-        currentBalance.html(userData.balance + " Coins");
 
-        if (inputField.val() > 0) {
-            responseContainer.removeClass('error');
-            responseContainer.addClass('success');
-            responseContainer.html('Herzlichen Glückwunsch. Sie haben Ihren Kontostand um ' + inputField.val() + ' Coins erhöht. Viel Spaß beim Ausgeben :)');
-            responseContainer.addClass('animate');
-            setTimeout(function () {
-                responseContainer.removeClass('animate');
-            }, 1000);
+        setTimeout(async () => {
+            const userData = await getUserData();
+            currentBalance.html(userData.balance + " Coins");
+        }, 200);
+
+        const inputValue = inputField.val();
+
+        if (inputValue > 0) {
+            responseContainer.removeClass('error').addClass('success');
+            responseContainer.html(`Herzlichen Glückwunsch. Sie haben Ihren Kontostand um ${inputValue} Coins erhöht. Viel Spaß beim Ausgeben :)`);
+            inputField.val(0);
         } else {
-            responseContainer.addClass('error');
-            responseContainer.removeClass('success');
+            responseContainer.removeClass('success').addClass('error');
             responseContainer.html('Bitte geben Sie einen gültigen Wert ein.');
-            responseContainer.addClass('animate');
-            setTimeout(function () {
-                responseContainer.removeClass('animate');
-            }, 1000);
         }
+
+        responseContainer.addClass('animate');
+        setTimeout(() => {
+            responseContainer.removeClass('animate');
+        }, 1000);
     });
 }
 
 async function initLoadCurrentUserLevel() {
     const container = jQuery('#user-level');
     const level = await currentUserLevel();
-    if (container.length) {
-        container.html('Ihr Level: ' + level);
-    }
+    if (container.length) container.html('Ihr Level: ' + level);
 }
 
 function initVisiblePassword() {
@@ -1185,10 +1189,6 @@ function initVisiblePassword() {
         const clickedElement = jQuery(this);
         const inputField = clickedElement.siblings('input');
         clickedElement.toggleClass('active');
-        if (inputField.attr('type') === "password") {
-            inputField.attr('type', 'text');
-        } else {
-            inputField.attr('type', 'password');
-        }
+        inputField.attr('type', inputField.attr('type') === "password" ? 'text' : 'password');
     })
 }

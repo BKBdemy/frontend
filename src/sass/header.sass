@@ -6,7 +6,7 @@ header
   z-index: 4
   width: 100%
   background: #fff
-  .info
+  .info, .info-mobile
     background: $blue
     padding: 10px 0
     .wrapper
@@ -32,15 +32,19 @@ header
           display: none
           @media screen and (min-width: 900px)
             display: block
+  .info:not(.info-mobile)
+    display: none
+    @media screen and (min-width: 900px)
+      display: block
   .wrapper
     nav
       display: flex
       align-items: center
       justify-content: space-between
       .home-logo
-        width: 120px
+        width: 100px
         position: relative
-        height: 120px
+        height: 100px
         display: flex
         align-items: center
         @media screen and (min-width: 900px)
@@ -65,14 +69,14 @@ header
           .stripe-top
             rotate: 45deg
             position: relative
-            top: 13px
+            top: 12px
           .stripe-bottom
             rotate: -45deg
             position: relative
             bottom: 13px
         .stripe
           width: 100%
-          height: 3px
+          height: 2px
           background: #6ca6cd
           border-radius: 10px
           margin: 10px 0
@@ -93,9 +97,9 @@ header
             transform: translateX(-50%)
             color: #6CA6CD
           .shop-button
-            opacity: 0
+            opacity: 0!important
             @media screen and (min-width: 1000px)
-              opacity: 1
+              opacity: 1!important
             &:hover
               background: #ffffff!important
               color: #6ca6cd!important
@@ -105,7 +109,7 @@ header
           overflow-x: scroll
           z-index: 10
           height: calc(100vh - 85.85px)
-          top: 120px
+          top: 100px
           left: 0
           width: 100%
           transition: opacity .3s ease-in-out

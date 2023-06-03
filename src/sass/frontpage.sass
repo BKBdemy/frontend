@@ -219,8 +219,12 @@
             white-space: nowrap
             color: #1c1d1f
     #shop-teaser
+      margin-bottom: 100px
+      @media screen and (min-width: 500px)
+        margin-bottom: 0
       @media screen and (min-width: 1300px)
         margin-top: 200px
+        margin-bottom: 0
       .wrapper
         height: 440px
         display: flex
@@ -236,8 +240,12 @@
           flex-direction: column
           gap: 20px
           height: max-content
+          position: relative
+          top: 60px
           @media screen and (min-width: 700px)
             padding: 40px
+          @media screen and (min-width: 1404px)
+            top: 0
           h3, p
             margin: 0
     #news
