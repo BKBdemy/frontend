@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="news-wrapper">
-        <h2 class="section-headline-frontpage">News</h2>
+        <h2 class="section-headline section-headline-frontpage">News</h2>
 
         <div class="news-slider">
             <article class="single-news">
