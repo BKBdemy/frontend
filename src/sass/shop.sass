@@ -12,8 +12,6 @@
         .difficulty-filter
           position: relative
           z-index: 2
-          opacity: .6
-          font-weight: 500
           width: max-content
           @media screen and (min-width: 450px)
             bottom: 70px
@@ -44,9 +42,10 @@
               width: 25px
               height: auto
           .dropdown
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)
+            top: 50px
             position: absolute
             z-index: 2
-            top: 40px
             left: 0
             width: 172px
             display: flex
@@ -58,7 +57,6 @@
             max-height: 0
             background: #ffffff
             padding: 20px
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)
             div
               display: flex
               justify-content: space-between
@@ -85,13 +83,13 @@
             border: none
             outline: none
             font-size: 18px
+            font-style: italic
             font-family: $font
             color: #6CA6CD
             font-weight: 500
             &::placeholder
               color: #1c1d1f
           img
-            opacity: .6
             width: 30px
             height: auto
       #results
